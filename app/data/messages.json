@@ -1,0 +1,13 @@
+[{
+	"id": 1,
+	"messageText": "<p>This is a message text where new lines are <br> and there is some more text on another line whcih could span 2 lines</p> <h4>data table</h4> <div>lots more details <p> some paragraph info here</p> </div>",
+	"unread": true
+}, {
+	"id": 2,
+	"messageText": "<p>This is a second message text which is a new message <br> and there is some more text on another line which could span 2 lines</p> <h4>data table</h4> <div>lots more details <p> some paragraph info here</p> </div>",
+	"unread": false
+}, {
+	"id": 3,
+	"messageText": "<p>this is a very short message</p>",
+	"unread": false
+}]
