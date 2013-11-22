@@ -12,3 +12,7 @@
 ## Brief explanation
 
 I've created a reusable Dropdown object (`scripts/dropdown.js`) in plain JavaScript using features with modern browsers and IE8+ support in mind. It's initialized for each trigger button in the `scripts/main.js` file using a JSON object for the menu structure. The dropdown styling (`styles/_dropdown.scss`) is written in [Sass](http://sass-lang.com) without using any styling library like Bootstrap. [Bitters](http://bitters.bourbon.io) is included just to quickly give some good default styles to the page.
+
+## Running it
+
+To run the project enter the following command in your console: `npm install && bower install && grunt server`. After installing all the development dependencies, it will create a local web server and open the project in the browser (thanks to [Yeoman](http://yeoman.io)).
