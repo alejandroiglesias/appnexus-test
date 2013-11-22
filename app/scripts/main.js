@@ -2,53 +2,91 @@
 
 (function () {
 
-    var timeoutId;
+    // These are the options for the dropdown menu.
+    var dropdownOpts = [
+        {
+            title: 'Home',
+            type: 'link',
+            destination: '#home'
+        },
+        {
+            title: 'About',
+            type: 'parent',
+            children: [
+                {
+                    title: 'The product',
+                    type: 'function',
+                    destination: function () {
+                        console.log('Clicked "The product"');
+                    }
+                },
+                {
+                    title: 'Meet the team',
+                    type: 'function',
+                    destination: function () {
+                        console.log('Clicked "Meet the team"');
+                    }
+                }
+            ]
+        },
+        {
+            title: 'Services',
+            type: 'parent',
+            children: [
+                {
+                    title: 'Service one',
+                    type: 'link',
+                    destination: '#service-one'
+                },
+                {
+                    title: 'Service two',
+                    type: 'link',
+                    destination: '#service-two'
+                }
+            ]
+        },
+        {
+            title: 'Products',
+            type: 'parent',
+            children: [
+                {
+                    title: 'Small product',
+                    type: 'function',
+                    destination: function () {
+                        console.log('Clicked "Small product"');
+                    }
+                },
+                {
+                    title: 'Big product',
+                    type: 'function',
+                    destination: function () {
+                        console.log('Clicked "Big product"');
+                    }
+                },
+                {
+                    title: 'Enourmous product',
+                    type: 'function',
+                    destination: function () {
+                        console.log('Clicked "Enourmous product"');
+                    }
+                }
+            ]
+        },
+        {
+            title: 'Contact',
+            type: 'link',
+            destination: '#contact'
+        }
+    ];
 
-    function bind (el, eventType, eventHandler) {
-        if (el.addEventListener) {
-            el.addEventListener(eventType, eventHandler, false);
-        }
-        else if (el.attachEvent) {
-            el.attachEvent(eventType, eventHandler);
-        }
+    // Look for all trigger buttons on the page.
+    var triggerEls = document.querySelectorAll('.js-toggle-dropdown');
+    // For each, initialize the Dropdown.
+    for (var i = 0; i < triggerEls.length; i++) {
+        new Dropdown({
+            element: triggerEls[i],
+            menuOptions: dropdownOpts
+        });
     }
-
-    function clearDropdowns () {
-        var pageDropdowns = document.querySelectorAll('.dropdown.open');
-        timeoutId = setTimeout(function () {
-            Array.prototype.forEach.call(pageDropdowns, function (el) {
-                el.className = el.className.replace(/open/g, '');
-            });
-        }, 2000);
-    }
-
-    function toggle (event) {
-        console.log('toggle');
-        var el = event.target;
-        // If clicked on document, close all opened dropdowns.
-        if (el.parentElement === null) {
-            console.log('clear1');
-            clearDropdowns();
-            return;
-        }
-        // Get dropdown status.
-        var isActive = /open/.test(el.parentElement.className);
-        console.log('isactive', el.parentElement.className, isActive);
-        // TODO: FIX: parent de un submenu no tiene clase 'open'.
-
-        // Clear all opened dropdowns.
-        console.log('clear');
-        clearDropdowns();
-        // If currently active, do nothing.
-        if (isActive) {
-            return;
-        }
-        console.log('cleartimeout');
-        clearTimeout(timeoutId);
-        // Add the 'open' class to parent to show dropdown.
-        el.parentElement.className += ' open';
-    }
-
-    bind(document, 'click', toggle);
 
 }());

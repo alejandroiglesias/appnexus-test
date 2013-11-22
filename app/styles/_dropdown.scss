@@ -9,13 +9,12 @@ $dropdown-link-hover-bg: #f5f5f5;
 .dropdown-menu {
 	position: absolute;
 	top: 100%;
-	left: 2px;
+	left: 1px;
 	z-index: 1000;
 	visibility: hidden;
 	float: left;
 	min-width: 160px;
 	padding: 5px 0;
-	// margin: 2px 0 0;
 	font-size: $base-font-size * 0.75;
 	list-style: none;
 	background-color: #fff;
@@ -26,14 +25,12 @@ $dropdown-link-hover-bg: #f5f5f5;
 	box-shadow: 0 6px 12px rgba(0,0,0,0.175);
 	background-clip: padding-box;
     opacity: 0;
-    @include transition(opacity 1s linear);
-    @include transition(visibility 0s linear 1s);
 
     .open > &,
     li:hover > ul {
         visibility: visible;
         opacity: 1;
-        @include transition(opacity 0.3s linear);
+        @include transition(opacity 0.3s);
     }
 
     li {
@@ -41,7 +38,6 @@ $dropdown-link-hover-bg: #f5f5f5;
 
         &:hover {
             & > a {
-                // color: $dropdown-link-hover-color;
                 background-color: $dropdown-link-hover-bg;
             }
         }
@@ -51,8 +47,6 @@ $dropdown-link-hover-bg: #f5f5f5;
             padding: 3px 20px;
             clear: both;
             font-weight: normal;
-            // line-height: @line-height-base;
-            // color: $dropdown-link-color;
             white-space: nowrap; // prevent links from randomly breaking onto new lines
             cursor: pointer;
 
