@@ -5,13 +5,3 @@
     <div class="list-group-item-text" ng-bind-html="message.messageText | collapse:!message.collapsed"></div>
   </a>
 </div>
-
-<h2>Explanation</h2>
-
-<ol>
-  <li>Should display all messages (from the json array) in a list or series of divs<br><span class="text-danger">I'd first set routing to point <code>/messages</code> to the <code>MessageListCtrl</code> controller and <code>views/message-list.html</code> template. On the controller I used <code>$resource</code> to load the data from the JSON file as if it was a RESTful service and outputted the data on the view using the ngRepeat directive over the List Group Bootstrap component.</span></li>
-  <li>Should display all the message-text if the message is unread (unread === true) or is the 1st message. This is the "expanded" format.<br><span class="text-danger">The explanation above applies for this also.</span></li>
-  <li>Should display only the 1st line of message-text, with ellipses (i.e. ...) at end if the message is read (unread === false) and is not the 1st message. This is the "collapsed" format.<br>note: only display the ellipses if there is more content than 1 line i.e. would not display ellipses for message id 3 but would for message id 2<br><span class="text-danger">I created a <code>collapse</code> filter for this which trims the text and accepts a parameter to bypass it. This parameter is used passing the <code>message.collapsed</code> property inverted to it, which is initialized next to the ngRepeat directive with a default value of <code>false</code> if message is unread or is the first in the list. Also, the <code>collapse</code> filter checks if content has more than one line, and if it doesn't, returns the original value.</span></li>
-  <li>Should expand a collapsed message when the user clicks a collapsed message<br><span class="text-danger">Clicking the list item inverts the boolean value of the <code>message.collapsed</code> property and, as the <code>collapse</code> filter takes that property inverted as the <code>bypass</code> parameter, updates accordingly.</span></li>
-  <li>Should collapse an expanded message when user clicks on an expanded message<br><span class="text-danger">The explanation above applies for this also.</span></li>
-</ol>
