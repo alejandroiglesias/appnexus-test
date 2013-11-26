@@ -27,7 +27,7 @@ $dropdown-link-hover-bg: #f5f5f5;
     opacity: 0;
 
     .open > &,
-    li:hover > ul {
+    .open > & li:hover > ul {
         visibility: visible;
         opacity: 1;
         -webkit-transition: opacity 0.3s;
