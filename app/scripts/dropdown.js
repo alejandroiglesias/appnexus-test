@@ -24,7 +24,7 @@
         this._buildMenu();
 
         // Add click event listener on the element.
-        addEventListener(this.el, 'click', this.toggle.bind(this));
+        addEventListener(this.el, 'click', this.toggle);
 
         return this;
     };
@@ -64,8 +64,9 @@
         else {
             event.cancelBubble = true;
         }
+        var el = event.target;
         // Get dropdown status.
-        var isActive = /open/.test(this.el.parentElement.className);
+        var isActive = /open/.test(el.parentElement.className);
         // Close all dropdowns.
         clearMenus();
         // If was currently active, do nothing as clearMenus closed it.
@@ -73,7 +74,7 @@
             return;
         }
         // Add the 'open' class to parent to show dropdown.
-        this.el.parentElement.className += ' open';
+        el.parentElement.className += ' open';
     };
 
     /**
