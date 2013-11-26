@@ -11,7 +11,7 @@
 
 ## Brief explanation
 
-I've created a reusable Dropdown object (`scripts/dropdown.js`) in plain JavaScript using features with modern browsers and IE9+ support in mind. It's initialized for each trigger button in the `scripts/main.js` file using a JSON object for the menu structure. The dropdown styling (`styles/_dropdown.scss`) is written in [Sass](http://sass-lang.com) without using any styling library like Bootstrap. [Bitters](http://bitters.bourbon.io) is included just to quickly give some good default styles to the page.
+I've created a reusable Dropdown object (`scripts/dropdown.js`) in plain JavaScript using features with modern browsers and IE8+ support in mind. It's initialized for each trigger button in the `scripts/main.js` file using a JSON object for the menu structure. The dropdown styling (`styles/_dropdown.scss`) is written in [Sass](http://sass-lang.com) without using any styling library like Bootstrap. [Bitters](http://bitters.bourbon.io) is included just to quickly give some good default styles to the page.
 
 ## Running it
 
