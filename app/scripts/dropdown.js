@@ -38,7 +38,7 @@
         // Create dropdown menu items using recursive
         // createMenuItems() function.
         var dropdownMenu = createMenuItems(this.menuOptions);
-        dropdownMenu.className = 'dropdown-menu generated';
+        dropdownMenu.className = 'dropdown-menu';
         dropdownMenuFragment.appendChild(dropdownMenu);
         // Insert dropdown menu fragment after trigger element.
         if (this.el.nextSibling) {
