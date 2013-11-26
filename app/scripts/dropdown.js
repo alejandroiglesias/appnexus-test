@@ -54,17 +54,20 @@
      * @param event {Event} The event
      **/
     Dropdown.prototype.toggle = function (event) {
+        // Get event object with fallback for IE8.
+        event = event || window.event;
         // Should stop propagation as it goes up to the document
         // element and calls the clearMenu() event handler. Adding
         // the timeout on closing the menu makes it complicated, so
         // best tradeoff is to stop propagation.
-        if (typeof event.stopPropagation !== 'undefined') {
+        if (event.stopPropagation) {
             event.stopPropagation();
         }
         else {
             event.cancelBubble = true;
         }
-        var el = event.target;
+        // Get event target element with fallback for IE8.
+        var el = event.target || event.srcElement;
         // Get dropdown status.
         var isActive = /open/.test(el.parentElement.className);
         // Close all dropdowns.
@@ -85,9 +88,10 @@
     function addEventListener (el, eventType, eventHandler) {
         if (el.addEventListener) {
             el.addEventListener(eventType, eventHandler, false);
-            return;
         }
-        el.attachEvent(eventType, eventHandler);
+        else if (el.attachEvent) {
+            el.attachEvent('on' + eventType, eventHandler);
+        }
     }
 
     /**
