@@ -20,33 +20,15 @@
         this.el = options.element;
         this.menuOptions = options.menuOptions;
 
-        // Build menu DOM elements.
-        this._buildMenu();
+        // If menu options object is passed, build menu DOM elements.
+        if (this.menuOptions) {
+            buildMenu(this.el, this.menuOptions);
+        }
 
         // Add click event listener on the element.
         addEventListener(this.el, 'click', this.toggle);
 
         return this;
-    };
-
-    /**
-     * Bulds the dropdown menu.
-     **/
-    Dropdown.prototype._buildMenu = function () {
-        // Create fragment to be added to DOM.
-        var dropdownMenuFragment = document.createDocumentFragment();
-        // Create dropdown menu items using recursive
-        // createMenuItems() function.
-        var dropdownMenu = createMenuItems(this.menuOptions);
-        dropdownMenu.className = 'dropdown-menu';
-        dropdownMenuFragment.appendChild(dropdownMenu);
-        // Insert dropdown menu fragment after trigger element.
-        if (this.el.nextSibling) {
-            this.el.parentNode.insertBefore(dropdownMenuFragment, this.el.nextSibling);
-        }
-        else {
-            this.el.parentNode.appendChild(dropdownMenuFragment);
-        }
     };
 
     /**
@@ -91,6 +73,28 @@
         }
         else if (el.attachEvent) {
             el.attachEvent('on' + eventType, eventHandler);
+        }
+    }
+
+    /**
+     * Bulds the dropdown menu DOM elements and add them next to the
+     * trigger element.
+     **/
+    function buildMenu (el, menuOptions) {
+        // Create fragment to be added to DOM.
+        var dropdownMenuFragment = document.createDocumentFragment();
+        // Create dropdown menu items using recursive
+        // createMenuItems() function.
+        var dropdownMenu = createMenuItems(menuOptions);
+        dropdownMenu.className = 'dropdown-menu';
+        dropdownMenuFragment.appendChild(dropdownMenu);
+        // Insert dropdown menu fragment after trigger element.
+        if (el.nextSibling) {
+            el.parentNode
+                .insertBefore(dropdownMenuFragment, el.nextSibling);
+        }
+        else {
+            el.parentNode.appendChild(dropdownMenuFragment);
         }
     }
 
