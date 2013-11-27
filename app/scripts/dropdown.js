@@ -63,9 +63,11 @@
     };
 
     /**
-     * Bind Adds an event listener.
-     * @param element {Element} The element to be temporarily removed
-     * @return {Function} A function that inserts the element into its original position
+     * Adds an event listener to an element with fallback support
+     * for IE8.
+     * @param element {Element} Element to add the event listener to
+     * @param eventType {String} Event type
+     * @param eventHandler {Function} Event handler function
      **/
     function addEventListener (el, eventType, eventHandler) {
         if (el.addEventListener) {
