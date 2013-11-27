@@ -26,40 +26,42 @@
         }
 
         // Add click event listener on the element.
-        addEventListener(this.el, 'click', this.toggle);
+        var instance = this;
+        addEventListener(this.el, 'click', function (event) { instance.toggle.call(instance, event); });
 
         return this;
     };
 
     /**
      * Toggles the dropdown menu.
-     * @param event {Event} The event
+     * @param event {Event} Event object if called from event
+     *                      listener on standards compliant browsers.
      **/
     Dropdown.prototype.toggle = function (event) {
         // Get event object with fallback for IE8.
         event = event || window.event;
         // Should stop propagation as it goes up to the document
-        // element and calls the clearMenu() event handler. Adding
-        // the timeout on closing the menu makes it complicated, so
-        // best tradeoff is to stop propagation.
-        if (event.stopPropagation) {
+        // element and the clearMenu() event handler gets called.
+        // Adding the timeout on closing the menu makes it complicated
+        // to make it in another way, so best tradeoff is to
+        // stop propagation.
+        if (event && event.stopPropagation) {
             event.stopPropagation();
         }
-        else {
+        // Also, should support IE8.
+        else if (event) {
             event.cancelBubble = true;
         }
-        // Get event target element with fallback for IE8.
-        var el = event.target || event.srcElement;
         // Get dropdown status.
-        var isActive = /open/.test(el.parentElement.className);
-        // Close all dropdowns.
+        var isActive = /open/.test(this.el.parentElement.className);
+        // Close all open dropdowns.
         clearMenus();
         // If was currently active, do nothing as clearMenus closed it.
         if (isActive) {
             return;
         }
         // Add the 'open' class to parent to show dropdown.
-        el.parentElement.className += ' open';
+        this.el.parentElement.className += ' open';
     };
 
     /**
