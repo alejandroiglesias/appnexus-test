@@ -79,14 +79,18 @@
         }
     ];
 
-    // Look for all trigger buttons on the page.
-    var triggerEls = document.querySelectorAll('.js-toggle-dropdown');
-    // For each, initialize the Dropdown.
-    for (var i = 0; i < triggerEls.length; i++) {
-        new Dropdown({
-            element: triggerEls[i],
-            menuOptions: dropdownOpts
-        });
-    }
+    // Example 1: Initialize dropdown with dynamic menu from JS object.
+    var generatedDropdown = new Dropdown({
+        element: document.querySelector('#trigger-generated-dropdown'),
+        menuOptions: dropdownOpts
+    });
+
+    // Example 2: Initialize dropdown with fixed menu inserted in markup.
+    // var fixedDropdown = new Dropdown({
+    //     element: document.querySelector('#trigger-fixed-dropdown')
+    // });
+
+    // You can manually toggle the dropdown.
+    // fixedDropdown.toggle();
 
 }());
