@@ -17,19 +17,15 @@
      * @return {Object} A Dropdown instance.
      **/
     var Dropdown = function (options) {
+        var that = this;
         this.el = options.element;
         this.menuOptions = options.menuOptions;
-
         // If menu options object is passed, build menu DOM elements.
         if (this.menuOptions) {
             buildMenu(this.el, this.menuOptions);
         }
-
         // Add click event listener on the element.
-        var instance = this;
-        addEventListener(this.el, 'click', function (event) { instance.toggle.call(instance, event); });
-
-        return this;
+        addEventListener(this.el, 'click', function (event) { that.toggle.call(that, event); });
     };
 
     /**
@@ -38,6 +34,7 @@
      *                      listener on standards compliant browsers.
      **/
     Dropdown.prototype.toggle = function (event) {
+        var isActive;
         // Get event object with fallback for IE8.
         event = event || window.event;
         // Should stop propagation as it goes up to the document
@@ -53,7 +50,7 @@
             event.cancelBubble = true;
         }
         // Get dropdown status.
-        var isActive = /open/.test(this.el.parentElement.className);
+        isActive = /open/.test(this.el.parentElement.className);
         // Close all open dropdowns.
         clearMenus();
         // If was currently active, do nothing as clearMenus closed it.
@@ -85,11 +82,12 @@
      * trigger element.
      **/
     function buildMenu (el, menuOptions) {
+        var dropdownMenu, dropdownMenuFragment;
         // Create fragment to be added to DOM.
-        var dropdownMenuFragment = document.createDocumentFragment();
+        dropdownMenuFragment = document.createDocumentFragment();
         // Create dropdown menu items using recursive
         // createMenuItems() function.
-        var dropdownMenu = createMenuItems(menuOptions);
+        dropdownMenu = createMenuItems(menuOptions);
         dropdownMenu.className = 'dropdown-menu';
         dropdownMenuFragment.appendChild(dropdownMenu);
         // Insert dropdown menu fragment after trigger element.
@@ -106,8 +104,9 @@
      * Closes all opened menus with a timeout of two seconds.
      **/
     function clearMenus () {
-        var pageDropdowns = document.querySelectorAll('.dropdown.open');
-        for (var i = 0; i < pageDropdowns.length; i++) {
+        var i, pageDropdowns;
+        pageDropdowns = document.querySelectorAll('.dropdown.open');
+        for (i = 0; i < pageDropdowns.length; i++) {
             setTimeout(makeCloseFn(pageDropdowns[i]), 2000);
         }
     }
@@ -118,9 +117,9 @@
      * @return {Element} The menu list element created.
      **/
     function createMenuItems (items) {
-        var menu, submenu, item, a, href, caret;
+        var a, caret, href, i, item, menu, submenu;
         menu = document.createElement('ul');
-        for (var i = 0; i < items.length; i++) {
+        for (i = 0; i < items.length; i++) {
             submenu = null;
             href = '#';
             item = document.createElement('li');

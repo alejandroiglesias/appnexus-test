@@ -1,9 +1,10 @@
 'use strict';
 
-(function () {
+(function (Dropdown) {
+    var dropdownOpts;
 
     // These are the options for the dropdown menu.
-    var dropdownOpts = [
+    dropdownOpts = [
         {
             title: 'Home',
             type: 'link',
@@ -80,7 +81,7 @@
     ];
 
     // Example 1: Initialize dropdown with dynamic menu from JS object.
-    var generatedDropdown = new Dropdown({
+    new Dropdown({
         element: document.querySelector('#trigger-generated-dropdown'),
         menuOptions: dropdownOpts
     });
@@ -93,4 +94,4 @@
     // You can manually toggle the dropdown.
     // fixedDropdown.toggle();
 
-}());
+}(window.Dropdown));
