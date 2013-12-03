@@ -1,6 +1,6 @@
-'use strict';
-
 (function (Dropdown) {
+    'use strict';
+
     var dropdownOpts;
 
     // These are the options for the dropdown menu.
@@ -94,4 +94,4 @@
     // You can manually toggle the dropdown.
     // fixedDropdown.toggle();
 
-}(window.Dropdown));
+}(this.Dropdown));
