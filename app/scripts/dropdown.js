@@ -13,8 +13,8 @@
     
     /**
      * Dropdown constructor.
-     * @param options {Object} An object with initialization options.
-     * @return {Object} A Dropdown instance.
+     * @param options {Object} Initialization options.
+     * @return {Object}
      **/
     var Dropdown = function (options) {
         var that = this;
@@ -64,7 +64,7 @@
     /**
      * Adds an event listener to an element with fallback support
      * for IE8.
-     * @param element {Element} Element to add the event listener to
+     * @param el {Element} Element to add the event listener to
      * @param eventType {String} Event type
      * @param eventHandler {Function} Event handler function
      **/
@@ -80,6 +80,8 @@
     /**
      * Bulds the dropdown menu DOM elements and add them next to the
      * trigger element.
+     * @param el {Element} Element to add the menu to
+     * @param menuOptions {Object} Menu options object
      **/
     function buildMenu (el, menuOptions) {
         var dropdownMenu, dropdownMenuFragment;
@@ -114,7 +116,7 @@
     /**
      * Recursive function to create menu items.
      * @param items {Object} The items to create the menu from.
-     * @return {Element} The menu list element created.
+     * @return {Element}
      **/
     function createMenuItems (items) {
         var a, caret, href, i, item, menu, submenu;
@@ -151,6 +153,8 @@
     /**
      * Makes a function that removes the 'open' class to a dropdown
      * to be used inside loops.
+     * @param dropdown {Element} Element to create the closing for.
+     * @return {Function}
      **/
     function makeCloseFn (dropdown) {
         return function () {
